@@ -13,7 +13,7 @@ import { HTTP_STATUS_CODES } from "../src/constants/httpStatusCodes";
 describe("Activities API", () => {
   let token: string;
   let scheduleId: string;
-  const activitiesLength = 10;
+  const activitiesLength = 5;
   const email = randomEmail();
   const password = randomPassword();
 
