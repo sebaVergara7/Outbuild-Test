@@ -4,11 +4,11 @@ import {
   ValidationArguments,
 } from "class-validator";
 
-export function IsEndDateAfterStartDate(
+export const IsEndDateAfterStartDate = (
   property: string,
   validationOptions?: ValidationOptions
-) {
-  return function (object: Object, propertyName: string) {
+) => {
+  return (object: object, propertyName: string) => {
     registerDecorator({
       name: "isEndDateAfterStartDate",
       target: object.constructor,
@@ -32,4 +32,4 @@ export function IsEndDateAfterStartDate(
       },
     });
   };
-}
+};

@@ -32,7 +32,7 @@ describe("Activities API", () => {
   });
 
   it("should create multiple activities", async () => {
-    const activities = Array.from({ length: activitiesLength }, (_, _i) =>
+    const activities = Array.from({ length: activitiesLength }, () =>
       createRandomActivity(scheduleId)
     );
 
