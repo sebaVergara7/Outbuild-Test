@@ -5,7 +5,6 @@ import { randomEmail, randomPassword } from "./testUtils";
 import { HTTP_STATUS_CODES } from "../src/constants/httpStatusCodes";
 
 describe("Auth API", () => {
-  let token: string;
   const email = randomEmail();
   const password = randomPassword();
   const uuid = randomUUID();
@@ -34,7 +33,6 @@ describe("Auth API", () => {
 
     expect(res.status).toBe(HTTP_STATUS_CODES.OK);
     expect(res.body.token).toBeDefined();
-    token = res.body.token;
   });
 
   it("should deny access without a token", async () => {

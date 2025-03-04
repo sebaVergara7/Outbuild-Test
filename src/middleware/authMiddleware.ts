@@ -20,7 +20,7 @@ export const authenticateToken = (
     const decoded = jwt.verify(token, SECRET_KEY) as { userId: string };
     req.user = decoded;
     next();
-  } catch (error) {
+  } catch {
     res.status(HTTP_STATUS_CODES.FORBIDDEN).json({ error: "Invalid token" });
   }
 };

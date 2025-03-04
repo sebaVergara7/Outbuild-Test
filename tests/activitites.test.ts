@@ -7,7 +7,6 @@ import {
   randomPassword,
   registerAndLoginTestUser,
 } from "./testUtils";
-import { randomUUID } from "crypto";
 import { HTTP_STATUS_CODES } from "../src/constants/httpStatusCodes";
 
 describe("Activities API", () => {
