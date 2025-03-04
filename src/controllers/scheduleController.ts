@@ -67,7 +67,10 @@ export const getAllSchedulesHandler = async (req: Request, res: Response) => {
       return;
     }
 
-    const schedules = await getAllSchedulesByUser(userId);
+    const page = parseInt(req.query.page as string) || 1;
+    const pageSize = parseInt(req.query.pageSize as string) || 10;
+
+    const schedules = await getAllSchedulesByUser(userId, page, pageSize);
     res.json(schedules);
   } catch (error) {
     handleError(error, res);

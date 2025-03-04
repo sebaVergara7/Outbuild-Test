@@ -34,8 +34,14 @@ export const getScheduleById = async (
   });
 };
 
-export const getAllSchedulesByUser = async (userId: string) => {
+export const getAllSchedulesByUser = async (
+  userId: string,
+  page: number = 1,
+  pageSize: number = 10
+) => {
   return await prisma.schedule.findMany({
     where: { userId },
+    skip: (page - 1) * pageSize,
+    take: pageSize,
   });
 };

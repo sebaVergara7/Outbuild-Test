@@ -31,7 +31,15 @@ export const getActivitiesHandler = async (req: Request, res: Response) => {
     const { id } = req.params;
     const userId = req.user.userId;
 
-    const activities = await getActivitiesBySchedule(userId, id);
+    const page = parseInt(req.query.page as string) || 1;
+    const pageSize = parseInt(req.query.pageSize as string) || 10;
+
+    const activities = await getActivitiesBySchedule(
+      userId,
+      id,
+      page,
+      pageSize
+    );
 
     res.status(HTTP_STATUS_CODES.OK).json(activities);
   } catch (error) {

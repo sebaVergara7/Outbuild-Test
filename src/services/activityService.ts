@@ -30,7 +30,9 @@ export const addActivity = async (
 
 export const getActivitiesBySchedule = async (
   userId: string,
-  scheduleId: string
+  scheduleId: string,
+  page: number = 1,
+  pageSize: number = 10
 ) => {
   const activities = await prisma.activity.findMany({
     where: {
@@ -40,6 +42,8 @@ export const getActivitiesBySchedule = async (
       },
     },
     orderBy: { startDate: "desc" },
+    skip: (page - 1) * pageSize,
+    take: pageSize,
   });
 
   if (activities.length === 0) {
