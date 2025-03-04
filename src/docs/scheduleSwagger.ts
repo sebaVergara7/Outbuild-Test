@@ -1,12 +1,16 @@
+import { HTTP_STATUS_CODES } from "../constants/httpStatusCodes";
+import { paginationParameters } from "./commonParameters";
+
 const scheduleSwagger = {
   "/api/schedules": {
     get: {
       summary: "Get all schedules",
+      parameters: [...paginationParameters],
       tags: ["Schedules"],
       security: [{ bearerAuth: [] }],
       responses: {
-        200: { description: "Schedules found" },
-        401: { description: "Unauthorized" },
+        [HTTP_STATUS_CODES.OK]: { description: "Schedules found" },
+        [HTTP_STATUS_CODES.UNAUTHORIZED]: { description: "Unauthorized" },
       },
     },
     post: {
@@ -28,8 +32,10 @@ const scheduleSwagger = {
         },
       },
       responses: {
-        201: { description: "Schedule created successfully" },
-        400: { description: "Bad request" },
+        [HTTP_STATUS_CODES.CREATED]: {
+          description: "Schedule created successfully",
+        },
+        [HTTP_STATUS_CODES.BAD_REQUEST]: { description: "Bad request" },
       },
     },
   },
@@ -46,25 +52,12 @@ const scheduleSwagger = {
           description: "ID of the schedule",
           schema: { type: "string" },
         },
-        {
-          in: "query",
-          name: "page",
-          required: false,
-          description: "Page number",
-          schema: { type: "integer" },
-        },
-        {
-          in: "query",
-          name: "pageSize",
-          required: false,
-          description: "Number of items per page",
-          schema: { type: "integer" },
-        },
+        ...paginationParameters,
       ],
       responses: {
-        200: { description: "Schedule found" },
-        401: { description: "Unauthorized" },
-        404: { description: "Schedule not found" },
+        [HTTP_STATUS_CODES.OK]: { description: "Schedule found" },
+        [HTTP_STATUS_CODES.UNAUTHORIZED]: { description: "Unauthorized" },
+        [HTTP_STATUS_CODES.NOT_FOUND]: { description: "Schedule not found" },
       },
     },
   },

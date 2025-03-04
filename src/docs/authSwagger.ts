@@ -1,3 +1,5 @@
+import { HTTP_STATUS_CODES } from "../constants/httpStatusCodes";
+
 const authSwagger = {
   "/api/auth/register": {
     post: {
@@ -22,8 +24,10 @@ const authSwagger = {
         },
       },
       responses: {
-        201: { description: "User registered successfully" },
-        400: { description: "Bad request" },
+        [HTTP_STATUS_CODES.CREATED]: {
+          description: "User registered successfully",
+        },
+        [HTTP_STATUS_CODES.BAD_REQUEST]: { description: "Bad request" },
       },
     },
   },
@@ -46,8 +50,10 @@ const authSwagger = {
         },
       },
       responses: {
-        200: { description: "Returns a JWT token" },
-        401: { description: "Invalid credentials" },
+        [HTTP_STATUS_CODES.OK]: { description: "Returns a JWT token" },
+        [HTTP_STATUS_CODES.UNAUTHORIZED]: {
+          description: "Invalid credentials",
+        },
       },
     },
   },

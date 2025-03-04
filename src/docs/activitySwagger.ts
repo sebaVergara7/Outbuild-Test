@@ -1,4 +1,6 @@
 import { randomUUID } from "crypto";
+import { paginationParameters } from "./commonParameters";
+import { HTTP_STATUS_CODES } from "../constants/httpStatusCodes";
 
 const activitySwagger = {
   "/api/activities": {
@@ -34,8 +36,10 @@ const activitySwagger = {
         },
       },
       responses: {
-        201: { description: "Activity added successfully" },
-        400: { description: "Bad request" },
+        [HTTP_STATUS_CODES.CREATED]: {
+          description: "Activity added successfully",
+        },
+        [HTTP_STATUS_CODES.BAD_REQUEST]: { description: "Bad request" },
       },
     },
   },
@@ -52,11 +56,12 @@ const activitySwagger = {
           description: "ID of the schedule",
           schema: { type: "string" },
         },
+        ...paginationParameters,
       ],
       responses: {
-        200: { description: "Activities found" },
-        400: { description: "Bad request" },
-        401: { description: "Unauthorized" },
+        [HTTP_STATUS_CODES.OK]: { description: "Activities found" },
+        [HTTP_STATUS_CODES.BAD_REQUEST]: { description: "Bad request" },
+        [HTTP_STATUS_CODES.UNAUTHORIZED]: { description: "Unauthorized" },
       },
     },
   },
@@ -98,8 +103,10 @@ const activitySwagger = {
         },
       },
       responses: {
-        201: { description: "Activities added successfully" },
-        400: { description: "Bad request" },
+        [HTTP_STATUS_CODES.CREATED]: {
+          description: "Activities added successfully",
+        },
+        [HTTP_STATUS_CODES.BAD_REQUEST]: { description: "Bad request" },
       },
     },
   },
