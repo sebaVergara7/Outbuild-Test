@@ -6,7 +6,7 @@ import {
 
 export const IsEndDateAfterStartDate = (
   property: string,
-  validationOptions?: ValidationOptions
+  validationOptions?: ValidationOptions,
 ) => {
   return (object: object, propertyName: string) => {
     registerDecorator({
